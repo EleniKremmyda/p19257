@@ -1,32 +1,19 @@
-import ast
+import tweepy
 
-#read the contents from the txt file.
-f = open("10.txt", 'r')
-dictionaries = f.read()
-f.close()
+auth = tweepy.OAuthHandler("QRXaiZwpnu1Qvn1D0ukSKBTzu", "C7WWoM6Mb1AFSeAR8PsKdfOYmWbluvnWogA6kQWeADJ5pWkWcS")
+auth.set_access_token("1349718097243082753-D7KW9RGBdHtD98fWt6HY33mlpASgAx", "cCzRXJrCHQ6xezPMtOcL2csvfzhQecFC9XVTNWYIP9z2R")
 
-#split the contents of the txt file by line
-dictionaries = dictionaries.split("\n")
+api = tweepy.API(auth)
 
-#we're going to need this, so we can find the max depth
-max_depth = -1
+input_user = input("Enter the name of the account you want to search: ")
+tweets = api.user_timeline(screen_name= input_user, count= 10, include_rts = False, tweet_mode = 'extended')
 
-#for every line that we find
-for dictionary in dictionaries:
-    #we try to convert it to a dictionary
-    try:
-        dictionary = ast.literal_eval(dictionary)
+longest_word = ""
+for tweet in tweets:
+  tweet_text = tweet.full_text
+  tweet_text = tweet_text.split()
+  for word in tweet_text:
+    if len(word) > len(longest_word) and not(word.startswith("http")) and not(word.startswith("@")):
+       longest_word = word
 
-        #and then we find its depth
-        depth = 0
-        for item in dictionary.values():
-            if type(item) == list or type(item) == dict:
-                depth += 1
-        
-        #and lastly we apply simple find-max algorithm, to find the max depth
-        if depth > max_depth:
-            max_depth = depth
-    except Exception as e:
-        print("Found an invalid dictionary. Error:", e)
-
-print("The dictionary with the biggest depth, has a depth size of:", max_depth)
+print(longest_word)

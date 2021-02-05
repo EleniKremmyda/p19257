@@ -1,5 +1,7 @@
 import ast
 
+print("The dictionaries can be read from the file 10.txt only.")
+
 #read the contents from the txt file.
 f = open("10.txt", 'r')
 dictionaries = f.read()
@@ -22,7 +24,7 @@ for dictionary in dictionaries:
         for item in dictionary.values():
             if type(item) == list or type(item) == dict:
                 depth += 1
-        
+
         #and lastly we apply simple find-max algorithm, to find the max depth
         if depth > max_depth:
             max_depth = depth
