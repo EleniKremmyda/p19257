@@ -1,9 +1,10 @@
 import ast
 
-print("The dictionaries can be read from the file 10.txt only.")
+#The location of the file is determined by the user.
+location = input("State the location of the text file to be read: ")
 
-#read the contents from the txt file.
-f = open("10.txt", 'r')
+#Open the file the user specifies.
+f = open(location, 'r')
 dictionaries = f.read()
 f.close()
 
