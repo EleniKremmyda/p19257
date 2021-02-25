@@ -1,7 +1,7 @@
 import tweepy
 
-auth = tweepy.OAuthHandler("QRXaiZwpnu1Qvn1D0ukSKBTzu", "C7WWoM6Mb1AFSeAR8PsKdfOYmWbluvnWogA6kQWeADJ5pWkWcS")
-auth.set_access_token("1349718097243082753-D7KW9RGBdHtD98fWt6HY33mlpASgAx", "cCzRXJrCHQ6xezPMtOcL2csvfzhQecFC9XVTNWYIP9z2R")
+auth = tweepy.OAuthHandler(" ", " ")
+auth.set_access_token(" ", " ")
 
 api = tweepy.API(auth)
 
